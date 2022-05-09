@@ -15,8 +15,8 @@ void removeDups(char *str)
       i++;
    }
 
-   /* After above step string is stringiittg.
-     Removing extra iittg after string*/
+   /* After above step string is helowcmk.
+     Removing extra characters by adding NULL character */
    str[res_index] = '\0';
 
    return;
