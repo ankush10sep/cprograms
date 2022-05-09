@@ -15,6 +15,8 @@ void removeDups(char *str)
       i++;
    }
 
+   /* After above step string is stringiittg.
+     Removing extra iittg after string*/
    str[res_index] = '\0';
 
    return;
