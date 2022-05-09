@@ -1,0 +1,82 @@
+#include "stdio.h"
+#include "string.h"
+
+#define DEL "."
+void validateIpAddress(char *str, int n)
+{
+   int i = 0;
+   int len = 0;
+   int numDots = 0;
+   char *str1;
+   int num = 0;
+   int firstOctet = 0;
+   int count = 0;
+
+   if (str == NULL)
+   {
+      printf("string is null\n");
+      return;
+   }
+
+   str1 = strtok(str, DEL);
+   while (str1)
+   {
+      len = strlen(str1);
+      for (i = 0; i < len; i++)
+      {
+         if(str1[i] < '0' || str1[i] > '9')
+         {
+            printf("Input Ip address is not IPV4\n");
+            return;
+         }
+      }
+
+      num = atoi(str1);
+      //printf("num = %d\n", num);
+      if(num < 0 || num > 255)
+      {
+         printf("Input Ip address is not IPV4: outof range\n");
+         return;
+      }
+
+      if(count == 0)
+      {
+         firstOctet = num;
+      }
+      str1 = strtok(NULL, DEL);
+      if (str1)
+      {
+         numDots++;
+      }
+      count++;
+   }
+
+   if (numDots == 3)
+   {
+      printf("Ipv4 address is valid\n");
+      if(firstOctet > 0 && firstOctet <= 127)
+         printf("Ipv4 address is class A\n");
+      else if(firstOctet > 128 && firstOctet <= 191)
+         printf("Ipv4 address is class B\n");
+      else if(firstOctet > 192 && firstOctet <= 223)
+         printf("Ipv4 address is class C\n");
+      else if(firstOctet > 224 && firstOctet <= 239)
+         printf("Ipv4 address is class D\n");
+      else
+         printf("Ipv4 address is class E\n");
+   }
+   else
+      printf("IPV4 address is not valid\n");
+}
+
+int main()
+{
+   char ip[30];
+
+   printf("Enter ipv4 ip address:");
+   scanf("%s", ip);
+
+   int size = strlen(ip);
+   validateIpAddress(ip, size);
+   return 0;
+}
