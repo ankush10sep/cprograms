@@ -1,6 +1,6 @@
 void removeDups(char *str)
 {
-   char hash[MAX_CHARS] = {0};
+   int hash[MAX_CHARS] = {0};
    int i = 0;
    int res_index = 0;
 
